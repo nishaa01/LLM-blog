@@ -3,191 +3,499 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
   <title>Nisha AI Journal</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet"/>
-<link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   <style>
-
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    body{
-      font-family:Inter,sans-serif;
-      background:#0f172a;
-      color:#e2e8f0;
-      line-height:1.8;
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background: #020617;
+      color: #e2e8f0;
+      line-height: 1.8;
     }
 
-    .navbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:25px 10%;
-      position:sticky;
-      top:0;
-      background:#0f172a;
-      border-bottom:1px solid #1e293b;
+    /* ── NAVBAR ── */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 22px 8%;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(2, 6, 23, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid #1e293b;
     }
 
-    .logo{
-      font-size:24px;
-      font-weight:800;
-      color:#38bdf8;
+    .logo {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: -0.01em;
     }
 
-    .nav-links a{
-      color:#cbd5e1;
-      text-decoration:none;
-      margin-left:20px;
-      transition:0.3s;
+    .nav-links {
+      display: flex;
+      gap: 32px;
     }
 
-    .nav-links a:hover{
-      color:#38bdf8;
+    .nav-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 500;
+      transition: color 0.25s;
     }
 
-    .hero{
-      padding:100px 10%;
-      max-width:1100px;
+    .nav-links a:hover { color: #38bdf8; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      padding: 0 8%;
+      background:
+        linear-gradient(rgba(2,6,23,0.80), rgba(2,6,23,0.95)),
+        url("https://images.unsplash.com/photo-1677442136019-21780ecad995?w=1800&q=80")
+        center / cover no-repeat;
     }
 
-    .tag{
-      color:#38bdf8;
-      font-weight:600;
-      margin-bottom:20px;
+    .hero-inner {
+      max-width: 860px;
     }
 
-    h1{
-      font-size:64px;
-      line-height:1.1;
-      margin-bottom:30px;
-      max-width:900px;
+    .tag {
+      display: inline-flex;
+      gap: 10px;
+      margin-bottom: 24px;
     }
 
-    .hero p{
-      font-size:20px;
-      color:#94a3b8;
-      max-width:800px;
+    .tag span {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      padding: 4px 12px;
+      border-radius: 20px;
     }
 
-    .section{
-      padding:80px 10%;
-      max-width:1100px;
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      line-height: 1.1;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: #f1f5f9;
     }
 
-    .section h2{
-      font-size:42px;
-      margin-bottom:25px;
-      color:white;
+    .hero h1 em {
+      font-style: normal;
+      color: #38bdf8;
     }
 
-    .card-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-      gap:25px;
-      margin-top:40px;
+    .hero-lede {
+      font-size: 1.1rem;
+      color: #94a3b8;
+      max-width: 600px;
+      margin-bottom: 36px;
+      line-height: 1.75;
     }
 
-    .card{
-      background:#1e293b;
-      padding:30px;
-      border-radius:20px;
-      transition:0.3s;
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
     }
 
-    .card:hover{
-      transform:translateY(-5px);
+    .btn-primary {
+      background: #38bdf8;
+      color: #020617;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.15s;
     }
 
-    .card h3{
-      margin-bottom:15px;
-      color:#38bdf8;
+    .btn-primary:hover {
+      background: #7dd3fc;
+      transform: translateY(-2px);
     }
 
-    footer{
-      padding:40px;
-      text-align:center;
-      border-top:1px solid #1e293b;
-      color:#94a3b8;
+    .btn-ghost {
+      background: transparent;
+      color: #cbd5e1;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border: 1px solid #334155;
+      transition: border-color 0.25s, color 0.25s;
     }
 
+    .btn-ghost:hover {
+      border-color: #38bdf8;
+      color: #38bdf8;
+    }
+
+    /* ── SHARED SECTION WRAPPER ── */
+    .section-wrap {
+      width: min(1100px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 90px 0;
+    }
+
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #38bdf8;
+      margin-bottom: 14px;
+    }
+
+    .section-wrap h2 {
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #f1f5f9;
+      margin-bottom: 12px;
+    }
+
+    .section-wrap .subtitle {
+      color: #64748b;
+      font-size: 1rem;
+      margin-bottom: 48px;
+      max-width: 520px;
+    }
+
+    /* ── TOPIC CARDS ── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      padding: 32px;
+      border-radius: 16px;
+      transition: border-color 0.25s, transform 0.25s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.35);
+    }
+
+    .card-icon {
+      font-size: 1.6rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #64748b;
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+    /* ── BLOG POSTS ── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .blog-card {
+      background: #0f172a;
+      border: 1px solid #1e293b;
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.25s, transform 0.25s;
+      text-decoration: none;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(56, 189, 248, 0.3);
+    }
+
+    .blog-tag {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: #38bdf8;
+    }
+
+    .blog-card h3 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #f1f5f9;
+      line-height: 1.4;
+    }
+
+    .blog-card p {
+      font-size: 0.85rem;
+      color: #64748b;
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .blog-meta {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #334155;
+      padding-top: 12px;
+      border-top: 1px solid #1e293b;
+      margin-top: auto;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: min(1100px, calc(100% - 48px));
+      margin: 0 auto;
+      border: none;
+      border-top: 1px solid #1e293b;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 48px 8%;
+      text-align: center;
+      border-top: 1px solid #1e293b;
+    }
+
+    footer .footer-logo {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #38bdf8;
+      margin-bottom: 10px;
+    }
+
+    footer p {
+      color: #334155;
+      font-size: 0.82rem;
+    }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 28px;
+      margin: 18px 0;
+    }
+
+    footer .footer-links a {
+      color: #475569;
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.25s;
+    }
+
+    footer .footer-links a:hover { color: #38bdf8; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .navbar {
+        padding: 18px 6%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .nav-links { gap: 20px; flex-wrap: wrap; }
+
+      .hero { padding: 0 6%; min-height: 80vh; }
+
+      .hero h1 { font-size: 2.2rem; }
+
+      .section-wrap { padding: 60px 0; }
+
+      .card-grid, .blog-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
-
 <body>
 
+  <!-- NAVBAR -->
   <nav class="navbar">
     <div class="logo">Nisha AI Journal</div>
-
     <div class="nav-links">
       <a href="#">Home</a>
-      <a href="#">Blogs</a>
-      <a href="#">Projects</a>
-      <a href="#">Contact</a>
+      <a href="#topics">Topics</a>
+      <a href="#blog">Blog</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
 
+  <!-- HERO -->
   <section class="hero">
-
-    <p class="tag">LLMs • AI • Machine Learning</p>
-
-    <h1>
-      Exploring Large Language Models,
-      AI Systems, and the Future of Intelligent Software
-    </h1>
-
-    <p>
-      A personal blog documenting my journey into AI,
-      backend engineering, machine learning,
-      and modern intelligent systems.
-    </p>
-
-  </section>
-
-  <section class="section">
-
-    <h2>Featured Topics</h2>
-
-    <div class="card-grid">
-
-      <div class="card">
-        <h3>Understanding LLMs</h3>
-        <p>
-          Breaking down transformers, tokens,
-          embeddings, attention, and modern AI architectures.
-        </p>
+    <div class="hero-inner">
+      <div class="tag">
+        <span>LLMs</span>
+        <span>AI Systems</span>
+        <span>Machine Learning</span>
       </div>
-
-      <div class="card">
-        <h3>AI Engineering</h3>
-        <p>
-          Building practical AI applications using APIs,
-          backend systems, and automation workflows.
-        </p>
+      <h1>
+        Exploring <em>Large Language Models</em>,<br>
+        AI Systems &amp; the Future of<br>
+        Intelligent Software
+      </h1>
+      <p class="hero-lede">
+        A personal blog documenting my journey into AI, backend engineering,
+        machine learning, and the tools shaping the future.
+      </p>
+      <div class="hero-cta">
+        <a href="#blog" class="btn-primary">Read the Blog</a>
+        <a href="#topics" class="btn-ghost">Browse Topics</a>
       </div>
-
-      <div class="card">
-        <h3>Prompt Engineering</h3>
-        <p>
-          Learning how prompts influence reasoning,
-          structure, and response quality in LLMs.
-        </p>
-      </div>
-
     </div>
-
   </section>
 
-  <footer>
-    Built by Nisha • Powered by GitHub Pages 🚀
+  <!-- FEATURED TOPICS -->
+  <div class="section-wrap" id="topics">
+    <p class="section-label">What I write about</p>
+    <h2>Featured Topics</h2>
+    <p class="subtitle">Deep dives into the ideas and tools driving modern AI.</p>
+    <div class="card-grid">
+      <div class="card">
+        <span class="card-icon">🧠</span>
+        <h3>Understanding LLMs</h3>
+        <p>Breaking down transformers, tokens, embeddings, attention mechanisms, and modern AI architectures from first principles.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">⚙️</span>
+        <h3>AI Engineering</h3>
+        <p>Building practical AI applications using APIs, backend systems, FastAPI, and production automation workflows.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">✍️</span>
+        <h3>Prompt Engineering</h3>
+        <p>Learning how prompts influence reasoning, structure, and response quality — with real examples and experiments.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">📦</span>
+        <h3>RAG & Retrieval</h3>
+        <p>Building retrieval-augmented generation pipelines: vector stores, embeddings, chunking strategies, and real-world trade-offs.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🔬</span>
+        <h3>ML Research Notes</h3>
+        <p>Summaries and commentary on recent papers — from fine-tuning techniques to scaling laws and alignment research.</p>
+      </div>
+      <div class="card">
+        <span class="card-icon">🛠️</span>
+        <h3>Tools & Stacks</h3>
+        <p>Practical comparisons of LangChain, LlamaIndex, vector databases, and the evolving AI developer ecosystem.</p>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <!-- BLOG POSTS -->
+  <div class="section-wrap" id="blog">
+    <p class="section-label">Recent articles</p>
+    <h2>Latest Posts</h2>
+    <p class="subtitle">Honest write-ups from my experiments and learning.</p>
+    <div class="blog-grid">
+      <a href="#" class="blog-card">
+        <div class="blog-tag">LLMs</div>
+        <h3>Fine-tuning LLMs on Custom Datasets</h3>
+        <p>A step-by-step walkthrough of fine-tuning a Llama-based model using QLoRA — from dataset prep to inference.</p>
+        <div class="blog-meta">
+          <span>Apr 28, 2025</span>
+          <span>8 min read</span>
+        </div>
+      </a>
+      <a href="#" class="blog-card">
+        <div class="blog-tag">AI Systems</div>
+        <h3>RAG Pipelines in Production</h3>
+        <p>What actually breaks when you move retrieval-augmented generation from a notebook to a live system — and how to fix it.</p>
+        <div class="blog-meta">
+          <span>Apr 14, 2025</span>
+          <span>11 min read</span>
+        </div>
+      </a>
+      <a href="#" class="blog-card">
+        <div class="blog-tag">ML Research</div>
+        <h3>Attention Mechanisms, Explained Simply</h3>
+        <p>Breaking down self-attention and multi-head attention with visual intuitions — no PhD required.</p>
+        <div class="blog-meta">
+          <span>Mar 30, 2025</span>
+          <span>7 min read</span>
+        </div>
+      </a>
+      <a href="#" class="blog-card">
+        <div class="blog-tag">Backend Eng.</div>
+        <h3>Building a Scalable AI API with FastAPI</h3>
+        <p>How I structured a production FastAPI backend to serve multiple ML models with async queuing and rate limiting.</p>
+        <div class="blog-meta">
+          <span>Mar 12, 2025</span>
+          <span>10 min read</span>
+        </div>
+      </a>
+      <a href="#" class="blog-card">
+        <div class="blog-tag">LLMs</div>
+        <h3>Prompt Engineering Patterns That Actually Work</h3>
+        <p>Chain-of-thought, few-shot, and structured output prompting — what I've learned after hundreds of experiments.</p>
+        <div class="blog-meta">
+          <span>Feb 25, 2025</span>
+          <span>6 min read</span>
+        </div>
+      </a>
+      <a href="#" class="blog-card">
+        <div class="blog-tag">ML Research</div>
+        <h3>Vector Databases: Pinecone vs Weaviate vs Chroma</h3>
+        <p>A practical comparison of three major vector stores for semantic search and RAG use cases.</p>
+        <div class="blog-meta">
+          <span>Feb 10, 2025</span>
+          <span>9 min read</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-logo">Nisha AI Journal</div>
+    <div class="footer-links">
+      <a href="mailto:nisha@example.com">Email</a>
+      <a href="https://github.com/" target="_blank">GitHub</a>
+      <a href="https://twitter.com/" target="_blank">Twitter</a>
+      <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
+    </div>
+    <p>Built by Nisha &bull; Powered by GitHub Pages</p>
   </footer>
 
 </body>
